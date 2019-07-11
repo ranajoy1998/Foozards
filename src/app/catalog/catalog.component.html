@@ -1,3 +1,40 @@
-<div class="main main-raised">
-    
+<link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection"/>
+<div class="container">
+    <table class="striped highlight responsive-table">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Category</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor = 'let fd of foodService.foods'>
+            <td>{{fd.fname}}</td>
+            <td>{{fd.fdesc}}</td>
+            <td>{{fd.fprice | currency:"INR"}}</td>
+            <td>{{fd.category_id}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+      <button (click)="getfoods()">GET</button>
+      <br><br>
 </div>
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <img src="assets/img/Pepper_Barbeque.jpg">
+          <span class="card-title">{{fd.fname}}</span>
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="assets/js/materialize.js"></script>

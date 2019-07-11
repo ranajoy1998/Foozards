@@ -8,10 +8,11 @@ import { Food } from './food.model';
 export class OrderService {
   SelectedFood: Food={
     _id:'',
-    name:'',
-    price:null,
-    category:'',
-    description:''
+    fname:'',
+    fprice:null,
+    category_id:'',
+    fdesc:'',
+    fpic:''
   };
   foods: Food[];
   baseUrl = "http://localhost:3000/";

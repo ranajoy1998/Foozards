@@ -1,7 +1,8 @@
 export class Food {
     _id: string;
-    name: string;
-    price: number;
-    category: string;
-    description: string;
+    fname: string;
+    fprice: number;
+    category_id: string;
+    fdesc: string;
+    fpic: string;
 }
