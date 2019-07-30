@@ -1,16 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { CatalogComponent } from './catalog/catalog.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './user-profile/home/home.component';
+import { AboutComponent } from './user-profile/about/about.component';
+import { ContactComponent } from './user-profile/contact/contact.component';
+import { LoginComponent } from './user/login/login.component';
+import { SignupComponent } from './user/signup/signup.component';
+import { CatalogComponent } from './user-profile/catalog/catalog.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserComponent } from './user/user.component';
+import { BookingComponent } from './user-profile/booking/booking.component';
+import { BookinghistoryComponent } from './user-profile/bookinghistory/bookinghistory.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthGuard } from './auth/auth.guard';
+import { UserService } from './shared/user.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,15 +29,24 @@ import { FormsModule } from '@angular/forms';
     ContactComponent,
     LoginComponent,
     SignupComponent,
-    CatalogComponent
+    CatalogComponent,
+    UserProfileComponent,
+    UserComponent,
+    BookingComponent,
+    BookinghistoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }, AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

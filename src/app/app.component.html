@@ -1,7 +1,18 @@
+<style>
+    .badge1 {
+        position: absolute;
+        top: 1px;
+        right: 7px;
+        padding: 0px 6px 0px 6px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+}
+</style>
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">    
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+            <a class="navbar-brand" routerLink="home">
             Foozards </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -45,8 +56,27 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
-                <i class="fa fa-instagram"></i>
+                <i class="fa fa-instagram" style="font-size: 180%;"></i>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="" data-placement="bottom" routerLink="/userprofile/booking" data-original-title="View Cart">
+                    <span class="badge1" *ngIf="foodService.counter > 0">{{foodService.counter}}</span>
+                    <span><i class="material-icons" style="font-size: 200%;">shopping_cart</i></span>
+                </a>
+            </li>
+            <li class="dropdown nav-item" *ngIf="userDetails">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <i class="material-icons">person</i> Welcome {{userDetails.cname.split(' ')[0]}}
+                </a>
+                <div class="dropdown-menu dropdown-with-icons">
+                <a routerLink="#" class="dropdown-item">
+                    <i class="material-icons">person_outline</i> Profile
+                </a>
+                <a class="dropdown-item" (click)="onLogout()" style="cursor: pointer">
+                    <i class="material-icons">exit_to_app</i> Logout
+                </a>
+                </div>
             </li>
             </ul>
         </div>

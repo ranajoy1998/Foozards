@@ -1,0 +1,125 @@
+<body class="login-page sidebar-collapse">
+    <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+      <div class="container" style="padding-top: 100px">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+            <div class="card card-login">
+              <form class="form" #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+                <div class="card-header card-header-primary text-center">
+                  <h4 class="card-title">Sign Up</h4>
+                  <div class="social-line">
+                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="description text-center">Or Be Classical</p>
+                <div class="card-body" style="height: 400px;">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" name="cname" placeholder="Name..." #cname="ngModel" [(ngModel)]="userService.selectedUser.cname" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !cname.valid }">
+                    <div *ngIf="signUpForm.submitted && !cname.valid">
+                        <label class="validation-message">This field is required.</label>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">mail</i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Email..." name="cemail" #cemail="ngModel" [(ngModel)]="userService.selectedUser.cemail" [pattern]="emailRegex" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !cemail.valid }">
+                    <div *ngIf="signUpForm.submitted && cemail.errors?.pattern">
+                        <label *ngIf="cemail.errors.required" class="validation-message">This field is required.</label>
+                        <label *ngIf="cemail.errors.pattern" class="validation-message">Invalid email address.</label>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password..." name="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" required minlength="6" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+                    <div *ngIf="signUpForm.submitted && password.errors?.minlength">
+                        <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+                        <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 6 characters.</label>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">phone</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Phone..." name="cphone" #cphone="ngModel" [(ngModel)]="userService.selectedUser.cphone" required minlength="10" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !cphone.valid }">
+                    <div *ngIf="signUpForm.submitted && cphone.errors?.minlength">
+                      <label class="validation-message">10 characters.</label>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">home</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Address..." name="caddress" #caddress="ngModel" [(ngModel)]="userService.selectedUser.caddress" [ngClass]="{'invalid-textbox' :signUpForm.submitted}">
+                    <div *ngIf="signUpForm.submitted">
+                      <label class="validation-message">Address Required.</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer text-center">
+                  <a class="btn btn-primary btn-link btn-wd btn-lg" routerLink="/login" style="padding-left: 30px">Log In</a>
+                  <button class="btn btn-primary btn-link btn-wd btn-lg" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">Sign Up</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cd-section section-notifications" id="notifications" style="background-color: transparent">
+      <!-- Success message -->
+      <!-- <div class="success" *ngIf="showSucessMessage">
+          Saved successfully
+      </div> -->
+      <div class="alert alert-success" *ngIf="showSucessMessage">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">check</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Success Alert:</b> Yuhuuu! You've created your own account!
+        </div>
+      </div>
+      <!-- Error message -->
+      <!-- <div class="alert" *ngIf="serverErrorMessages">
+        {{serverErrorMessages}}
+      </div> -->
+      <div class="alert alert-danger" *ngIf="serverErrorMessages">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">error_outline</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Error Alert:</b> Damn man! {{serverErrorMessages}}
+        </div>
+      </div>
+    </div>
+<router-outlet></router-outlet>
+</body>
