@@ -9,6 +9,7 @@ import { Category } from './category.model';
 export class OrderService {
   counter: number = 0;
   map = new Map<string, number>();
+
   SelectedFood: Food={
     _id:'',
     fname:'',
@@ -22,7 +23,6 @@ export class OrderService {
   baseUrl = "http://localhost:3200/";
 
   initMap(fd_id: string, n: number) {
-    console.log("n: " + n);
     if(n > 0)
       this.map.set(fd_id, n);
     else
@@ -57,6 +57,7 @@ export class OrderService {
   resetCounter() {
     this.counter = 0;
   }
+
   constructor(private http: HttpClient) { 
 
   }

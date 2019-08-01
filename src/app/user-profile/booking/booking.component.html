@@ -1,2 +1,113 @@
-<p>booking works!</p>
+<!-- <link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection"/> -->
+
+<link rel="stylesheet" href="assets/css/style.css" />
+    
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/pizza-inn-Irving-Texas-background-pizzas.jpg'); height: 90vh !important;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title" style="margin-top: 230px !important">A wide range of exotic dishes.</h1>
+        <h4>Your ultimate destination for food at the convenience of your home. The food wizards have come together to finally give you the spell to satisfy your hunger.</h4>
+        <br>
+        <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
+          <i class="fa fa-play"></i> Watch video
+        </a> -->
+      </div>
+    </div>
+    <div class="arrow bounce" *ngIf="userService.isLoggedIn()">
+      <a class="fa fa-arrow-down fa-2x" style="color: red" href="userprofile/catalog#fdcontent"></a>
+    </div>
+    <div class="arrow bounce" *ngIf="!userService.isLoggedIn()">
+      <a class="fa fa-arrow-down fa-2x" style="color: red" href="catalog#fdcontent"></a>
+    </div>
+  </div>
+</div>
+<div class="main main-raised" id="fdcontent">
+  <div class="section section-basic" style="padding: 30px !important">
+    <div class="container">
+      <div class="tim-typo" style="padding-left: 0">
+        <h2 class="title" style="width: auto; text-align: center">Order Food</h2>
+      </div>
+      <div class="table-responsive" *ngIf="hasMap(); else empty">
+        <table class="table table-shopping">
+          <thead>
+            <tr>
+              <th class="text-center">No.</th>
+              <th class="text-center"></th>
+              <th class="text-center">Category</th>
+              <th class="th-description text-center">Item</th>
+              <th class="th-description text-center">Descripton</th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Qty</th>
+              <th class="text-center">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let key of foodService.map.keys(); let i = index">
+              <ng-container *ngFor="let fd of foodService.foods">
+                <ng-container *ngIf = "fd._id === key">
+                  <td class="text-center">
+                    {{i + 1}}
+                  </td>
+                  <td>
+                    <div class="img-container">
+                      <img [src]="getSafeUrl(fd.fpic)" alt="...">
+                    </div>
+                  </td>
+                  <ng-container *ngFor = "let cat of foodService.cats">    
+                    <td class="td-name" *ngIf = "fd.category_id === cat.category_id">
+                      {{cat.category_name}}
+                    </td>
+                  </ng-container>
+                  <td class="text-center">
+                    {{fd.fname}}
+                  </td>
+                  <td class="text-center">
+                    {{fd.fdesc}}
+                  </td>
+                  <td class="td-number text-center">
+                    &#8377;{{fd.fprice}}
+                  </td>
+                  <td class="td-number text-center">
+                      <div class="btn-group text-center" style="margin: 0px 0px !important;">
+                        <button class="btn btn-round btn-info btn-sm" style="padding: 0.2rem 0.3rem !important;">
+                          <i class="material-icons" style="margin-top: 0em !important; margin-bottom: 0em !important;">remove</i>
+                        </button>
+                        <span style="border: 2px solid #00bcd4;">&nbsp;&nbsp;{{foodService.map.get(key)}}&nbsp;&nbsp;</span>
+                        <button class="btn btn-round btn-info btn-sm" style="padding: 0.2rem 0.3rem !important;">
+                          <i class="material-icons" style="margin-top: 0em !important; margin-bottom: 0em !important;">add</i>
+                        </button>
+                      </div>
+                  </td>
+                  <td class="td-number text-center">
+                    &#8377;{{getPrice(fd, foodService.map.get(key))}}
+                  </td>
+                  <td class="td-actions">
+                    <button type="button" rel="tooltip" data-placement="right" title="Remove item" class="btn btn-danger" style="padding: 5px 5px !important; margin: 0px 0px !important;">
+                      <i class="material-icons">close</i>
+                    </button>
+                  </td>
+                </ng-container>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #empty>
+        <div class="tim-typo" style="padding-left: 0">
+        <h3 class="title" style="width: auto; text-align: center">Your Cart is empty! Add delicious dishes to order now!</h3>
+        </div>
+      </ng-template>
+      <div style="text-align: center; color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" *ngIf="hasMap(); else empty1">
+        <a class="btn btn-danger btn-lg" role="button" aria-disabled="true" style="margin-bottom: 20px; font-size: 15pt; padding: 0.6rem 1.7rem !important;" (click)="gotobook()">Order</a>
+      </div>
+      <ng-template #empty1>
+        <div style="text-align: center; color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+            <a class="btn btn-danger btn-lg" role="button" aria-disabled="true" style="margin-bottom: 20px; font-size: 15pt; padding: 0.6rem 1.7rem !important;" (click)="gotocatalog()">Catalog</a>
+        </div>
+      </ng-template>  
+    </div>
+  </div>
+</div>
+<!-- <script type="text/javascript" src="assets/js/materialize.js"></script> -->
 <router-outlet></router-outlet>

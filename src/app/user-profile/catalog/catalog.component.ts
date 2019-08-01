@@ -33,7 +33,7 @@ export class CatalogComponent implements OnInit {
 
   getNumber(fd_id: string) {
     if(this.foodService.map.has(fd_id)) {
-      console.log("value: " + this.foodService.map.get(fd_id));
+      //console.log("value: " + this.foodService.map.get(fd_id));
       return this.foodService.map.get(fd_id);
     }
     else
@@ -41,17 +41,13 @@ export class CatalogComponent implements OnInit {
   }
 
   addCounter(fd_id: string, count: number) {
-    console.log(count);
     this.foodService.counter++;
-    console.log("counter: " + this.foodService.counter);
     this.foodService.initMap(fd_id, ++count);
   }
 
   subCounter(fd_id: string, cntr: number) {
-    console.log(cntr);
     if(cntr > 0)
       this.foodService.counter--;
-    console.log("counter: " + this.foodService.counter);
     this.foodService.initMap(fd_id, --cntr);
   }
 
