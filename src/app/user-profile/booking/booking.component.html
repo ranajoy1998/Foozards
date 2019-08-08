@@ -70,11 +70,11 @@
                   </td>
                   <td class="td-number text-center">
                       <div class="btn-group text-center" style="margin: 0px 0px !important;">
-                        <button class="btn btn-round btn-info btn-sm" style="padding: 0.2rem 0.3rem !important;">
+                        <button class="btn btn-round btn-info btn-sm" style="padding: 0.2rem 0.3rem !important;" (click)="subCounter(fd._id, foodService.map.get(key))">
                           <i class="material-icons" style="margin-top: 0em !important; margin-bottom: 0em !important;">remove</i>
                         </button>
                         <span style="border: 2px solid #00bcd4;">&nbsp;&nbsp;{{foodService.map.get(key)}}&nbsp;&nbsp;</span>
-                        <button class="btn btn-round btn-info btn-sm" style="padding: 0.2rem 0.3rem !important;">
+                        <button class="btn btn-round btn-info btn-sm" style="padding: 0.2rem 0.3rem !important;" (click)="addCounter(fd._id, foodService.map.get(key))">
                           <i class="material-icons" style="margin-top: 0em !important; margin-bottom: 0em !important;">add</i>
                         </button>
                       </div>
@@ -83,7 +83,7 @@
                     &#8377;{{getPrice(fd, foodService.map.get(key))}}
                   </td>
                   <td class="td-actions">
-                    <button type="button" rel="tooltip" data-placement="right" title="Remove item" class="btn btn-danger" style="padding: 5px 5px !important; margin: 0px 0px !important;">
+                    <button type="button" rel="tooltip" data-placement="right" title="Remove item" class="btn btn-danger" style="padding: 5px 5px !important; margin: 0px 0px !important;" (click)="removeItem(fd._id)">
                       <i class="material-icons">close</i>
                     </button>
                   </td>
@@ -99,13 +99,24 @@
         </div>
       </ng-template>
       <div style="text-align: center; color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" *ngIf="hasMap(); else empty1">
-        <a class="btn btn-danger btn-lg" role="button" aria-disabled="true" style="margin-bottom: 20px; font-size: 15pt; padding: 0.6rem 1.7rem !important;" (click)="gotobook()">Order</a>
+        <a class="btn btn-danger btn-lg" role="button" aria-disabled="true" style="margin-bottom: 20px; font-size: 15pt; padding: 0.6rem 1.7rem !important;" (click)="gotobook(foodService.map)">Order</a>
       </div>
       <ng-template #empty1>
         <div style="text-align: center; color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
             <a class="btn btn-danger btn-lg" role="button" aria-disabled="true" style="margin-bottom: 20px; font-size: 15pt; padding: 0.6rem 1.7rem !important;" (click)="gotocatalog()">Catalog</a>
         </div>
-      </ng-template>  
+      </ng-template>
+      <div class="alert alert-success" *ngIf="showSuccessMessage">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">check</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Success Alert:</b> Yuhuuu! Your order has been accepted!
+        </div>
+      </div>  
     </div>
   </div>
 </div>

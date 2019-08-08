@@ -27,9 +27,16 @@ export class AppComponent implements OnInit {
     }
   }
 
+  getCounter() {
+    return localStorage.getItem('counter');
+  }
+
   onLogout(){
     this.userDetails = undefined;
     this.userService.deleteToken();
     this.router.navigate(['/login']);
+    localStorage.setItem('counter', '0');
+    this.foodService.counter = 0;
+    this.foodService.map.clear();
   }
 }

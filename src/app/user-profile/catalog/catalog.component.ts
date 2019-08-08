@@ -42,12 +42,14 @@ export class CatalogComponent implements OnInit {
 
   addCounter(fd_id: string, count: number) {
     this.foodService.counter++;
+    localStorage.setItem('counter', this.foodService.counter.toString());
     this.foodService.initMap(fd_id, ++count);
   }
 
   subCounter(fd_id: string, cntr: number) {
     if(cntr > 0)
       this.foodService.counter--;
+    localStorage.setItem('counter', this.foodService.counter.toString());
     this.foodService.initMap(fd_id, --cntr);
   }
 

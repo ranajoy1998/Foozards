@@ -61,7 +61,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" rel="tooltip" title="" data-placement="bottom" routerLink="/userprofile/booking" data-original-title="View Cart">
-                    <span class="badge1" *ngIf="foodService.counter > 0">{{foodService.counter}}</span>
+                    <span class="badge1" *ngIf="getCounter() > 0">{{getCounter()}}</span>
                     <span><i class="material-icons" style="font-size: 200%;">shopping_cart</i></span>
                 </a>
             </li>
