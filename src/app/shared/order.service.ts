@@ -9,7 +9,7 @@ import { Category } from './category.model';
 export class OrderService {
   counter: number = 0;
   map = new Map<string, number>();
-
+  
   SelectedFood: Food={
     _id:'',
     fname:'',
@@ -27,7 +27,7 @@ export class OrderService {
       this.map.set(fd_id, n);
     else
       this.map.delete(fd_id);
-    console.log(this.map);
+    localStorage.map = JSON.stringify(Array.from(this.map.entries()));
   }
 
   getCategories() {

@@ -32,6 +32,8 @@ export class CatalogComponent implements OnInit {
   }
 
   getNumber(fd_id: string) {
+    if(localStorage.map)
+      this.foodService.map = new Map(JSON.parse(localStorage.map));
     if(this.foodService.map.has(fd_id)) {
       //console.log("value: " + this.foodService.map.get(fd_id));
       return this.foodService.map.get(fd_id);

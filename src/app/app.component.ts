@@ -18,13 +18,21 @@ export class AppComponent implements OnInit {
       this.userService.getUserProfile().subscribe(
         res => {
           this.userDetails = res['user'];
-          //console.log(this.userDetails);
+          localStorage.setItem('cname', this.userDetails.cname);
+          localStorage.setItem('cemail', this.userDetails.cemail);
+          localStorage.setItem('caddress', this.userDetails.caddress);
+          localStorage.setItem('cphone', this.userDetails.cphone);
+          console.log(this.userDetails);
         },
         err => { 
           console.log(err);
         }
       );
     }
+    if(localStorage.map)
+      this.foodService.map = new Map(JSON.parse(localStorage.map));
+    if(localStorage.getItem('counter'))
+      this.foodService.counter = parseInt(localStorage.getItem('counter'));
   }
 
   getCounter() {
@@ -35,8 +43,13 @@ export class AppComponent implements OnInit {
     this.userDetails = undefined;
     this.userService.deleteToken();
     this.router.navigate(['/login']);
+    localStorage.clear();
     localStorage.setItem('counter', '0');
     this.foodService.counter = 0;
     this.foodService.map.clear();
+    localStorage.removeItem('cname');
+    localStorage.removeItem('cemail');
+    localStorage.removeItem('caddress');
+    localStorage.removeItem('cphone');
   }
 }

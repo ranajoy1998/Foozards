@@ -6,6 +6,7 @@ import { Booking } from './booking.model';
   providedIn: 'root'
 })
 export class BookingService {
+  bmap = new Map<string, number>();
   SelectedBooking: Booking={
     _id: '',
     fname: [],
@@ -19,12 +20,13 @@ export class BookingService {
     date: null
   };
   baseUrl = 'http://localhost:3200/';
-  bookings: Booking[];
+  public bookings: Booking[];
 
   constructor(private http: HttpClient) { }
 
-  getBookings() {
-    return this.http.get(this.baseUrl + "orders");
+  getBookings(cemail: string) {
+    console.log(this.baseUrl + "orders/mail/" + cemail);
+    return this.http.get(this.baseUrl + "orders/mail/" + cemail);
   }
 
   postBookings(newBooking: Booking) {
