@@ -7,6 +7,7 @@ import { BookingComponent } from './user-profile/booking/booking.component';
 import { AboutComponent } from './user-profile/about/about.component';
 import { BookinghistoryComponent } from './user-profile/bookinghistory/bookinghistory.component';
 import { ContactComponent } from './user-profile/contact/contact.component';
+import { ProfileComponent } from './user-profile/profile/profile.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: 'userprofile', component: UserProfileComponent,
         children: [{path: 'catalog', component: CatalogComponent}]
+    },
+    {
+        path: 'userprofile', component: UserProfileComponent,
+        children: [{path: 'profile', component: ProfileComponent}]
     },
     {
         path: 'userprofile', component: UserProfileComponent,

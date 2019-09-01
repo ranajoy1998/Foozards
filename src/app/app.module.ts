@@ -21,6 +21,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserService } from './shared/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { DatePipe } from '@angular/common';
+import { ProfileComponent } from './user-profile/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DatePipe } from '@angular/common';
     UserProfileComponent,
     UserComponent,
     BookingComponent,
-    BookinghistoryComponent
+    BookinghistoryComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

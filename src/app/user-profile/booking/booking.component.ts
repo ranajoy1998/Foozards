@@ -21,7 +21,7 @@ export class BookingComponent implements OnInit {
   showSuccessMessage: boolean;
   userDetails: any;
 
-  constructor(private userService: UserService, private router: Router, private bookingService: BookingService, private foodService: OrderService, private sanitizer: DomSanitizer, private datepipe: DatePipe) {
+  constructor(public userService: UserService, private router: Router, private bookingService: BookingService, private foodService: OrderService, private sanitizer: DomSanitizer, private datepipe: DatePipe) {
     this.trustedUrl = this.sanitizer.bypassSecurityTrustUrl(this.apiurl);
     this.mydate = this.datepipe.transform(this.myDate, 'yyyy-MM-ddTHH:mm:ss.SSS');
   }

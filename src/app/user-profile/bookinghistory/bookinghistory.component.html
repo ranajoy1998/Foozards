@@ -1,6 +1,6 @@
 <!-- <link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection"/> -->
 
-<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="../../../assets/css/style.css" />
     
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/ob_5a4415_66172a43fed0d35f3ef83a42b6425b5b-large.jpg'); height: 90vh !important;">
   <div class="container">
@@ -30,57 +30,36 @@
           <thead>
             <tr>
               <th class="text-center">No.</th>
-              <th class="text-center"></th>
-              <th class="text-center">Category</th>
               <th class="th-description text-center">Item</th>
               <th class="th-description text-center">Descripton</th>
-              <th class="text-center">Price</th>
               <th class="text-center">Qty</th>
               <th class="text-center">Amount</th>
+              <th class="text-center">Booking Date</th>
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let bks of bookingService.bookings; let i = index">
+            <tr *ngFor="let bks of bookingService.bookings; let i = index">
               <td class="text-center">
                 {{i + 1}}
+              </td> 
+              <td class="text-center">
+                {{bks.fname}}
               </td>
-              <ng-container *ngFor="let fd of foodService.foods">
-                <tr *ngFor="let bkfname of bks.fname; let j = index">          
-                  <ng-container *ngIf = "fd.fname === bkfname">
-                    <td class="text-center">
-                      {{j + 1}}
-                    </td>
-                    <td>
-                      <div class="img-container">
-                        <img [src]="getSafeUrl(fd.fpic)" alt="...">
-                      </div>
-                    </td>
-                    <ng-container *ngFor = "let cat of foodService.cats">    
-                      <td class="td-name text-center" *ngIf = "fd.category_id === cat.category_id">
-                        {{cat.category_name}}
-                      </td>
-                    </ng-container>
-                    <td class="text-center">
-                      {{fd.fname}}
-                    </td>
-                    <td class="text-center">
-                      {{fd.fdesc}}
-                    </td>
-                    <td class="td-number text-center">
-                      &#8377;{{fd.fprice}}
-                    </td>
-                    <td class="td-number text-center">
-                        <div class="btn-group text-center" style="margin: 0px 0px !important;">
-                          <span>{{bks.quantity[j]}}</span>
-                        </div>
-                    </td>
-                    <td class="td-number text-center" *ngIf="j === 0">
-                      &#8377;{{bks.price}}
-                    </td>
-                  </ng-container>
-                </tr>
-              </ng-container>
-            </ng-container>
+              <td class="text-center">
+                {{bks.fdesc}}
+              </td>
+              <td class="td-number text-center">
+                <div class="btn-group text-center" style="margin: 0px 0px !important;">
+                  <span>{{bks.quantity}}</span>
+                </div>
+              </td>
+              <td class="td-number text-center">
+                &#8377;{{bks.price}}
+              </td>
+              <td class="text-center">
+                {{bks.date | date:'medium' }}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

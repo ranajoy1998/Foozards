@@ -17,7 +17,7 @@ export class CatalogComponent implements OnInit {
   trustedUrl;
   flag: boolean = false;
 
-  constructor(private userService: UserService, private router : Router, private foodService: OrderService, private sanitizer: DomSanitizer) {
+  constructor(public userService: UserService, private router : Router, public foodService: OrderService, private sanitizer: DomSanitizer) {
     this.trustedUrl = this.sanitizer.bypassSecurityTrustUrl(this.apiurl);
   }
 

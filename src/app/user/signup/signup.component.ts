@@ -13,7 +13,7 @@ export class SignupComponent implements OnInit {
   showSucessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(private userService: UserService, private router : Router) { }
+  constructor(public userService: UserService, private router : Router) { }
   
   ngOnInit() {
     if(this.userService.isLoggedIn())

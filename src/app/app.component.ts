@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   }
 
   getCounter() {
-    return localStorage.getItem('counter');
+    return parseInt(localStorage.getItem('counter'));
   }
 
   onLogout(){
