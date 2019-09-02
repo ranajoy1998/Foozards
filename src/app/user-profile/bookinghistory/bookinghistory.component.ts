@@ -14,7 +14,7 @@ import { Booking } from 'src/app/shared/booking.model';
   styleUrls: ['./bookinghistory.component.css']
 })
 export class BookinghistoryComponent implements OnInit {
-  public apiurl = 'http://localhost:3200';
+  public apiurl = 'https://foozards-server.herokuapp.com';
   trustedUrl;
   userdetails: any;
 

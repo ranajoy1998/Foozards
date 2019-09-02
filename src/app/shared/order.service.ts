@@ -20,7 +20,7 @@ export class OrderService {
   };
   foods: Food[];
   cats: Category[];
-  baseUrl = "http://localhost:3200/";
+  baseUrl = "https://foozards-server.herokuapp.com/";
 
   initMap(fd_id: string, n: number) {
     if(n > 0)

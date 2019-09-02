@@ -13,7 +13,7 @@ import { Category } from 'src/app/shared/category.model';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
-  public apiurl = 'http://localhost:3200';
+  public apiurl = 'https://foozards-server.herokuapp.com';
   trustedUrl;
   flag: boolean = false;
 

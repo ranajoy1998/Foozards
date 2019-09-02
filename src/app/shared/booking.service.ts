@@ -19,7 +19,7 @@ export class BookingService {
     price: 0,
     date: null
   };
-  baseUrl = 'http://localhost:3200/';
+  baseUrl = 'https://foozards-server.herokuapp.com/';
   public bookings: Booking[];
 
   constructor(private http: HttpClient) { }

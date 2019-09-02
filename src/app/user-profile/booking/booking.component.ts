@@ -14,7 +14,7 @@ import { BookingService } from 'src/app/shared/booking.service';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-  public apiurl = 'http://localhost:3200';
+  public apiurl = 'https://foozards-server.herokuapp.com';
   trustedUrl;
   myDate = new Date();
   public mydate;
